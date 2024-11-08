@@ -120,4 +120,10 @@ case class ColumnarSubqueryBroadcastExec(
 
   protected def withNewChildInternal(newChild: SparkPlan): ColumnarSubqueryBroadcastExec =
     copy(child = newChild)
+
+  // transsion
+  override private[sql] def materialize(): Future[Any] = null
+
+  // transsion
+  override private[sql] def cancel(): Unit = {}
 }

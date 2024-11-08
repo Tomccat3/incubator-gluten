@@ -170,17 +170,18 @@ object GlutenWriterColumnarRules {
         // then aqe itself will guarantee to generate columnar outputs.
         // So FakeRowAdaptor will always consumes columnar data,
         // thus avoiding the case of c2r->aqe->r2c->writer
-        case aqe: AdaptiveSparkPlanExec =>
-          command.withNewChildren(
-            Array(
-              FakeRowAdaptor(
-                AdaptiveSparkPlanExec(
-                  aqe.inputPlan,
-                  aqe.context,
-                  aqe.preprocessingRules,
-                  aqe.isSubquery,
-                  supportsColumnar = true
-                ))))
+        // transsion not support now
+//        case aqe: AdaptiveSparkPlanExec =>
+//          command.withNewChildren(
+//            Array(
+//              FakeRowAdaptor(
+//                AdaptiveSparkPlanExec(
+//                  aqe.inputPlan,
+//                  aqe.context,
+//                  aqe.preprocessingRules,
+//                  aqe.isSubquery,
+//                  supportsColumnar = true
+//                ))))
         case other => command.withNewChildren(Array(FakeRowAdaptor(other)))
       }
     }
