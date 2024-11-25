@@ -66,7 +66,8 @@ object MiscColumnarRules {
   // columnar child plan so is always functional.
   case class RewriteSubqueryBroadcast() extends Rule[SparkPlan] {
     override def apply(plan: SparkPlan): SparkPlan = {
-      val out = plan.transformWithSubqueries {
+      // transsion
+      val out = plan.transformUpWithSubqueries {
         case p =>
           // Since https://github.com/apache/incubator-gluten/pull/1851.
           //

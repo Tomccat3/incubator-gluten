@@ -90,7 +90,8 @@ object GlutenExplainUtils extends AdaptiveSparkPlanHelper {
         case _: ColumnarToRowTransition =>
         case _: RowToColumnarTransition =>
         case _: ReusedExchangeExec =>
-        case sub: AdaptiveSparkPlanExec if sub.isSubquery => collect(sub.executedPlan)
+        // transsion
+        case sub: AdaptiveSparkPlanExec if !sub.isMainQuery => collect(sub.executedPlan)
         case _: AdaptiveSparkPlanExec =>
         case p: QueryStageExec => collect(p.plan)
         case p: GlutenPlan =>
