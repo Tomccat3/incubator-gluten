@@ -177,14 +177,15 @@ object GlutenWriterColumnarRules {
         case aqe: AdaptiveSparkPlanExec =>
           command.withNewChildren(
             Array(
-              FakeRowAdaptor(
-                AdaptiveSparkPlanExec(
-                  aqe.inputPlan,
-                  aqe.context,
-                  aqe.preprocessingRules,
-                  aqe.isSubquery,
-                  supportsColumnar = true
-                ))))
+              FakeRowAdaptor(AdaptiveSparkPlanExec(
+                aqe.inputPlan,
+                aqe.context,
+                aqe.onReOptimizeRuleProvider,
+                aqe.sharedPostStageCreationRules,
+                aqe.isMainQuery,
+                aqe.requiredDistribution,
+                supportsColumnar = true
+              ))))
         case other => command.withNewChildren(Array(FakeRowAdaptor(other)))
       }
     }

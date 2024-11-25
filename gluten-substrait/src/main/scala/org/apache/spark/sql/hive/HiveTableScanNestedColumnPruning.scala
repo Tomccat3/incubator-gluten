@@ -119,9 +119,9 @@ object HiveTableScanNestedColumnPruning extends Logging {
         countLeaves(metadataSchema) > countLeaves(prunedMetadataSchema)
       ) {
         val leafNode = leafNodeBuilder(prunedDataSchema, prunedMetadataSchema)
+        // transsion delete AttributeSet(relation.output)
         val projectionOverSchema = ProjectionOverSchema(
-          prunedDataSchema.merge(prunedMetadataSchema),
-          AttributeSet(relation.output))
+          prunedDataSchema.merge(prunedMetadataSchema))
         Some(
           buildNewProjection(
             projects,

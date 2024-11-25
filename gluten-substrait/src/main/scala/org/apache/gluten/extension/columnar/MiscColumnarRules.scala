@@ -38,9 +38,10 @@ object MiscColumnarRules {
   // child plan with columnar output (e.g., an adaptive Spark plan that yields final plan that
   // is full-offloaded). ColumnarSubqueryBroadcastExec is both compatible with row-based and
   // columnar child plan so is always functional.
+  // transsion
   case class RewriteSubqueryBroadcast() extends Rule[SparkPlan] {
     override def apply(plan: SparkPlan): SparkPlan = {
-      val out = plan.transformWithSubqueries {
+      val out = plan.transformUpWithSubqueries {
         case p =>
           // Since https://github.com/apache/incubator-gluten/pull/1851.
           //
