@@ -22,7 +22,7 @@ val numPartitions = 200  // how many dsdgen partitions to run - number of input 
 
 val format = "parquet" // valid spark format like parquet "parquet".
 val rootDir = "/tmp/tpch" // root directory of location to create data in.
-val dsdgenDir = "/tmp/tpcds-kit" // location of dbgen
+val dsdgenDir = "/tmp/tpcds-kit/tools" // location of dbgen
 
 val tables = new TPCDSTables(spark.sqlContext,
     dsdgenDir = dsdgenDir,
