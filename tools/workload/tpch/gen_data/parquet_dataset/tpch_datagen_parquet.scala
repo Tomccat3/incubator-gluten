@@ -21,8 +21,8 @@ val scaleFactor = "100" // scaleFactor defines the size of the dataset to genera
 val numPartitions = 200  // how many dsdgen partitions to run - number of input tasks.
 
 val format = "parquet" // valid spark format like parquet "parquet".
-val rootDir = "/home/super/data" // root directory of location to create data in.
-val dbgenDir = "/home/super/tpch-dbgen" // location of dbgen
+val rootDir = "/tmp/tpch" // root directory of location to create data in.
+val dbgenDir = "/tmp/tpch-dbgen" // location of dbgen
 
 val tables = new TPCHTables(spark.sqlContext,
     dbgenDir = dbgenDir,

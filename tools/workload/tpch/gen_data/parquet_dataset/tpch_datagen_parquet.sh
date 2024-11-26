@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-SPARK_HOME=/usr/lib/spark/
+SPARK_HOME=/usr/lib/spark
 spark_sql_perf_jar=/home/super/spark-sql-perf_2.12-0.5.1-SNAPSHOT.jar
 cat tpch_datagen_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --num-executors 4 \
