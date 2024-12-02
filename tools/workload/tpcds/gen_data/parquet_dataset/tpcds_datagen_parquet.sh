@@ -22,7 +22,7 @@ cat tpcds_datagen_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --executor-cores 1 \
   --master yarn \
   --driver-memory 4g \
-  --deploy-mode client \
+  --deploy-mode cluster \
   --conf spark.executor.memoryOverhead=1g \
   --conf spark.sql.broadcastTimeout=4800 \
   --conf spark.driver.maxResultSize=4g \
