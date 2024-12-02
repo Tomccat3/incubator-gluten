@@ -31,8 +31,9 @@ object RewriteJoin extends RewriteSingleNode with JoinSelectionHelper {
   }
 
   private def getSmjBuildSide(join: SortMergeJoinExec): Option[BuildSide] = {
-    val leftBuildable = canBuildShuffledHashJoinLeft(join.joinType)
-    val rightBuildable = canBuildShuffledHashJoinRight(join.joinType)
+    // transsion
+    val leftBuildable = canBuildShuffledHashJoinLeft(join.joinType, join.conf)
+    val rightBuildable = canBuildShuffledHashJoinRight(join.joinType, join.conf)
     if (!leftBuildable && !rightBuildable) {
       return None
     }
