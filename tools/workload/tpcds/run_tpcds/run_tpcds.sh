@@ -13,8 +13,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GLUTEN_JAR=/PATH_TO_GLUTEN_HOME/package/target/<gluten-jar>
-SPARK_HOME=/PATH_TO_SPARK_HOME/
+GLUTEN_JAR=/usr/lib/spark/jars/gluten-velox-bundle-spark3.5_2.12-amzn_2_x86_64-1.3.0-SNAPSHOT.jar
+SPARK_HOME=/usr/lib/spark
 
 cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --master yarn --deploy-mode client \

@@ -98,5 +98,3 @@ dist/
 
 # For Hive
 metastore_db/
-
-lib
