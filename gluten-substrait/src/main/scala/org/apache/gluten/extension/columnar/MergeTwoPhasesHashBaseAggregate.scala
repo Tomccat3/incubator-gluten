@@ -63,6 +63,7 @@ case class MergeTwoPhasesHashBaseAggregate(session: SparkSession)
     if (!mergeTwoPhasesAggEnabled || !enableColumnarHashAgg) {
       plan
     } else {
+      // transsion add 'true'
       plan.transformDown {
         case hashAgg @ HashAggregateExec(
               _,
@@ -73,7 +74,8 @@ case class MergeTwoPhasesHashBaseAggregate(session: SparkSession)
               aggregateAttributes,
               _,
               resultExpressions,
-              child: HashAggregateExec) if !isStreaming && isPartialAgg(child, hashAgg) =>
+              child: HashAggregateExec,
+              true) if !isStreaming && isPartialAgg(child, hashAgg) =>
           // convert to complete mode aggregate expressions
           val completeAggregateExpressions = aggregateExpressions.map(_.copy(mode = Complete))
           hashAgg.copy(
