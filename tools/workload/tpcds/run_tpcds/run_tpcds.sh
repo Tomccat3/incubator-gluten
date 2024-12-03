@@ -26,7 +26,7 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --conf spark.gluten.sql.columnar.forceShuffledHashJoin=true \
   --conf spark.shuffle.manager=org.apache.spark.shuffle.sort.ColumnarShuffleManager \
   --num-executors 3 \
-  --executor-cores 3 \
+  --executor-cores 1 \
   --driver-memory 2g \
   --executor-memory 4g \
   --conf spark.executor.memoryOverhead=2g \
