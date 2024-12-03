@@ -22,14 +22,14 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
   --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
   --conf spark.memory.offHeap.enabled=true \
-  --conf spark.memory.offHeap.size=13g \
+  --conf spark.memory.offHeap.size=18g \
   --conf spark.gluten.sql.columnar.forceShuffledHashJoin=true \
   --conf spark.shuffle.manager=org.apache.spark.shuffle.sort.ColumnarShuffleManager \
   --num-executors 2 \
   --executor-cores 1 \
-  --driver-memory 2g \
-  --executor-memory 4g \
-  --conf spark.executor.memoryOverhead=6g \
+  --driver-memory 4g \
+  --executor-memory 3g \
+  --conf spark.executor.memoryOverhead=2g \
   --conf spark.driver.maxResultSize=2g \
   --conf spark.executorEnv.JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
   --conf spark.yarn.appMasterEnv.JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
