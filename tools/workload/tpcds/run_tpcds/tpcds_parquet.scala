@@ -26,7 +26,7 @@ var gluten_root = "/home/super/incubator-gluten"
 
 // File root path: file://, hdfs:// , s3 , ...
 // e.g. hdfs://hostname:8020
-var paq_file_root = "hdfs://10.0.78.28:8020"
+var paq_file_root = "hdfs://10.0.75.184:8020"
 
 var tpcds_queries_path = "/tools/gluten-it/common/src/main/resources/tpcds-queries/"
 

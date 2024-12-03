@@ -66,14 +66,41 @@
       <systemPath>${project.basedir}/../lib/spark-common-utils_2.12-3.5.2-amzn-1.jar</systemPath>
       <optional>true</optional>
     </dependency>
-<!--    <dependency>-->
-<!--      <groupId>org.apache.spark</groupId>-->
-<!--      <artifactId>spark-core_${scala.binary.version}</artifactId>-->
-<!--      <version>${spark.version}</version>-->
-<!--      <scope>system</scope>-->
-<!--      <systemPath>${project.basedir}/src/lib/spark-core_2.12-3.5.2-amzn-1.jar</systemPath>-->
-<!--      <optional>true</optional>-->
-<!--    </dependency>-->
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-core_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-core_2.12-3.5.2-amzn-1.jar</systemPath>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-common-utils_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-common-utils_2.12-3.5.2-amzn-1.jar</systemPath>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-unsafe_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-unsafe_2.12-3.5.2-amzn-1.jar</systemPath>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.esotericsoftware</groupId>
+      <artifactId>kryo-shaded</artifactId>
+      <version>4.0.2</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/kryo-shaded-4.0.2.jar</systemPath>
+      <optional>true</optional>
+    </dependency>
+
+
+
 
     <dependency>
       <groupId>org.apache.gluten</groupId>
@@ -93,11 +120,11 @@
 <!--      <artifactId>spark-sql_${scala.binary.version}</artifactId>-->
 <!--      <scope>provided</scope>-->
 <!--    </dependency>-->
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-core_${scala.binary.version}</artifactId>
-      <scope>provided</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.spark</groupId>-->
+<!--      <artifactId>spark-core_${scala.binary.version}</artifactId>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
 <!--    <dependency>-->
 <!--      <groupId>org.apache.spark</groupId>-->
 <!--      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>-->
