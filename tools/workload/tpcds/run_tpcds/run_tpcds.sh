@@ -22,12 +22,12 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
   --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
   --conf spark.memory.offHeap.enabled=true \
-  --conf spark.memory.offHeap.size=2g \
+  --conf spark.memory.offHeap.size=3g \
   --conf spark.sql.adaptive.enabled=true \
   --conf spark.gluten.sql.columnar.forceShuffledHashJoin=true \
   --conf spark.shuffle.manager=org.apache.spark.shuffle.sort.ColumnarShuffleManager \
   --num-executors 3 \
-  --executor-cores 3 \
+  --executor-cores 1 \
   --driver-memory 2g \
   --executor-memory 3g \
   --conf spark.executor.memoryOverhead=2g \
