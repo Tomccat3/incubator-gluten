@@ -18,8 +18,8 @@ SPARK_HOME=/usr/lib/spark
 
 cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --master yarn --deploy-mode client \
-  --num-executors 3 \
-  --executor-cores 3 \
+  --num-executors 8 \
+  --executor-cores 1 \
   --driver-memory 2g \
   --executor-memory 4g \
   --conf spark.executor.memoryOverhead=2g \
