@@ -102,6 +102,14 @@
   <dependencies>
 
     <!-- transsion -->
+        <dependency>
+          <groupId>org.apache.spark</groupId>
+          <artifactId>spark-core_${scala.binary.version}</artifactId>
+          <version>${spark.version}</version>
+          <scope>system</scope>
+          <systemPath>${project.basedir}/../lib/spark-core_2.12-3.5.2-amzn-1.jar</systemPath>
+          <optional>true</optional>
+        </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-sql_${scala.binary.version}</artifactId>
@@ -186,11 +194,11 @@
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-core_${scala.binary.version}</artifactId>
-      <scope>provided</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.spark</groupId>-->
+<!--      <artifactId>spark-core_${scala.binary.version}</artifactId>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
 <!--    <dependency>-->
 <!--      <groupId>org.apache.spark</groupId>-->
 <!--      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>-->
