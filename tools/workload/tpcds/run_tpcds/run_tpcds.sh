@@ -23,7 +23,7 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
   --conf spark.memory.offHeap.enabled=true \
   --conf spark.memory.offHeap.size=2g \
-  --conf spark.sql.adaptive.enabled=false \
+  --conf spark.sql.adaptive.enabled=true \
   --conf spark.gluten.sql.columnar.forceShuffledHashJoin=true \
   --conf spark.shuffle.manager=org.apache.spark.shuffle.sort.ColumnarShuffleManager \
   --num-executors 3 \
