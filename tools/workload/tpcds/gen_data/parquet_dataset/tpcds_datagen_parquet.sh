@@ -16,7 +16,7 @@
 SPARK_HOME=/usr/lib/spark
 spark_sql_perf_jar=/home/super/spark-sql-perf_2.12-0.5.1-SNAPSHOT.jar
 cat tpcds_datagen_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
-  --num-executors 4 \
+  --num-executors 15 \
   --name tpch_gen_parquet \
   --executor-memory 4g \
   --executor-cores 1 \
