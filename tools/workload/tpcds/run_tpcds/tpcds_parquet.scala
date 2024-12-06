@@ -21,7 +21,7 @@ import java.util.Arrays
 import sys.process._
 
 // Configurations:
-var parquet_file_path = "/tmp/tpch"
+var parquet_file_path = "/tmp/tpcds"
 var gluten_root = "/home/super/incubator-gluten"
 
 // File root path: file://, hdfs:// , s3 , ...
