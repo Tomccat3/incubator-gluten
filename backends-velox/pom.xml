@@ -114,13 +114,13 @@
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-sql_${scala.binary.version}</artifactId>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../lib/spark-sql_2.12-3.5.2-amzn-1.jar</systemPath>
+      <systemPath>${project.basedir}/../lib/spark-sql_2.12-3.5.1-amzn-1.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
       <scope>system</scope>
-      <systemPath>${project.basedir}/../lib/spark-catalyst_2.12-3.5.2-amzn-1.jar</systemPath>
+      <systemPath>${project.basedir}/../lib/spark-catalyst_2.12-3.5.1-amzn-1.jar</systemPath>
     </dependency>
     <dependency>
       <groupId>org.apache.spark</groupId>
