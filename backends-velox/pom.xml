@@ -115,6 +115,13 @@
       <systemPath>${project.basedir}/../lib/spark-catalyst_2.12-3.3.1.jar</systemPath>
     </dependency>
     <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sketch_${scala.binary.version}</artifactId>
+      <scope>system</scope>
+      <version>3.3.1</version>
+      <systemPath>${project.basedir}/../lib/spark-sketch_2.12-3.3.1.jar</systemPath>
+    </dependency>
+    <dependency>
       <groupId>org.jetbrains</groupId>
       <artifactId>annotations</artifactId>
       <version>17.0.0</version>
