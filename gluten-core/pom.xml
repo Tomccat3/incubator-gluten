@@ -13,6 +13,45 @@
   <name>Gluten Core</name>
 
   <dependencies>
+
+    <!-- transsion -->
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_${scala.binary.version}</artifactId>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-sql_2.12-3.3.1.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-catalyst_2.12-3.3.1.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-core_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-core_2.12-3.3.1.jar</systemPath>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-tags_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-tags_2.12-3.3.1.jar</systemPath>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-network-common_${scala.binary.version}</artifactId>
+      <version>${spark.version}</version>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-network-common_2.12-3.3.1.jar</systemPath>
+      <optional>true</optional>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.gluten</groupId>
       <artifactId>gluten-ras-common</artifactId>
@@ -37,21 +76,21 @@
       <version>${project.version}</version>
     </dependency>
     <!-- Prevent our dummy JAR from being included in Spark distributions or uploaded to YARN -->
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-sql_${scala.binary.version}</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-core_${scala.binary.version}</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
-      <scope>provided</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.spark</groupId>-->
+<!--      <artifactId>spark-sql_${scala.binary.version}</artifactId>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.spark</groupId>-->
+<!--      <artifactId>spark-core_${scala.binary.version}</artifactId>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.spark</groupId>-->
+<!--      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-hive_${scala.binary.version}</artifactId>

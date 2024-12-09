@@ -47,12 +47,12 @@ import scala.reflect.ClassTag
  * @param nativePartitioning
  *   hold partitioning parameters needed by native shuffle writer
  * @param metrics
- *   the metrics for the columnar shuffle
+ *   the metrics for the columnar shuffle transsion
  */
 class ColumnarShuffleDependency[K: ClassTag, V: ClassTag, C: ClassTag](
     @transient private val _rdd: RDD[_ <: Product2[K, V]],
     override val partitioner: Partitioner,
-    override val serializer: Serializer = SparkEnv.get.serializer,
+    serializer: Serializer = SparkEnv.get.serializer,
     override val keyOrdering: Option[Ordering[K]] = None,
     override val aggregator: Option[Aggregator[K, V, C]] = None,
     override val mapSideCombine: Boolean = false,
@@ -67,4 +67,6 @@ class ColumnarShuffleDependency[K: ClassTag, V: ClassTag, C: ClassTag](
     keyOrdering,
     aggregator,
     mapSideCombine,
-    shuffleWriterProcessor) {}
+    shuffleWriterProcessor) {
+  super.serializer = serializer
+}

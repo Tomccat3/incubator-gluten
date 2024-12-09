@@ -100,6 +100,28 @@
   </profiles>
 
   <dependencies>
+
+    <!-- transsion -->
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-sql_${scala.binary.version}</artifactId>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-sql_2.12-3.3.1.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
+      <scope>system</scope>
+      <systemPath>${project.basedir}/../lib/spark-catalyst_2.12-3.3.1.jar</systemPath>
+    </dependency>
+    <dependency>
+      <groupId>org.jetbrains</groupId>
+      <artifactId>annotations</artifactId>
+      <version>17.0.0</version>
+      <scope>provided</scope>
+      <optional>true</optional>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.gluten</groupId>
       <artifactId>gluten-substrait</artifactId>
@@ -125,16 +147,16 @@
       <type>test-jar</type>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-core_${scala.binary.version}</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.spark</groupId>
-      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>
-      <scope>provided</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.apache.spark</groupId>-->
+<!--      <artifactId>spark-core_${scala.binary.version}</artifactId>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.apache.spark</groupId>-->
+<!--      <artifactId>spark-catalyst_${scala.binary.version}</artifactId>-->
+<!--      <scope>provided</scope>-->
+<!--    </dependency>-->
     <dependency>
       <groupId>org.apache.spark</groupId>
       <artifactId>spark-hive_${scala.binary.version}</artifactId>
