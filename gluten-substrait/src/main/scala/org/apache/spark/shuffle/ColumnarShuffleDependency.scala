@@ -47,7 +47,7 @@ import scala.reflect.ClassTag
  * @param nativePartitioning
  *   hold partitioning parameters needed by native shuffle writer
  * @param metrics
- *   the metrics for the columnar shuffle transsion
+ *   the metrics for the columnar shuffle transsion serializer 不能被重写,因为父类中的定义为 var
  */
 class ColumnarShuffleDependency[K: ClassTag, V: ClassTag, C: ClassTag](
     @transient private val _rdd: RDD[_ <: Product2[K, V]],
@@ -67,6 +67,4 @@ class ColumnarShuffleDependency[K: ClassTag, V: ClassTag, C: ClassTag](
     keyOrdering,
     aggregator,
     mapSideCombine,
-    shuffleWriterProcessor) {
-  super.serializer = serializer
-}
+    shuffleWriterProcessor) {}
