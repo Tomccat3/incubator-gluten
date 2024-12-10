@@ -18,8 +18,8 @@ spark_sql_perf_jar=/root/spark-sql-perf_2.12-0.5.1-SNAPSHOT.jar
 cat tpcds_datagen_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --num-executors 4 \
   --name tpcds_gen_parquet \
-  --executor-memory 4g \
-  --executor-cores 1 \
+  --executor-memory 8g \
+  --executor-cores 2 \
   --master yarn \
   --driver-memory 2g \
   --deploy-mode client \
