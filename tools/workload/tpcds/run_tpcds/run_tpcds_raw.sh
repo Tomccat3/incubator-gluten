@@ -22,6 +22,7 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --executor-cores 2 \
   --driver-memory 2g \
   --executor-memory 8g \
+  --conf spark.sql.adaptive.enabled=true \
   --conf spark.executor.memoryOverhead=2g \
   --conf spark.driver.maxResultSize=2g \
 #  --conf spark.executorEnv.JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
