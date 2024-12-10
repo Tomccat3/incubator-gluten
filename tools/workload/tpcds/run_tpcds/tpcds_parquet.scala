@@ -21,12 +21,12 @@ import java.util.Arrays
 import sys.process._
 
 // Configurations:
-var parquet_file_path = "/PATH/TO/TPCDS_PARQUET_PATH"
-var gluten_root = "/PATH/TO/GLUTEN"
+var parquet_file_path = "/tmp/tpcds"
+var gluten_root = "/root/incubator-gluten"
 
 // File root path: file://, hdfs:// , s3 , ...
 // e.g. hdfs://hostname:8020
-var paq_file_root = "/ROOT_PATH"
+var paq_file_root = "hdfs://10.38.81.35:8020"
 
 var tpcds_queries_path = "/tools/gluten-it/common/src/main/resources/tpcds-queries/"
 
@@ -34,7 +34,7 @@ def time[R](block: => R): R = {
     val t0 = System.nanoTime()
     val result = block    // call-by-name
     val t1 = System.nanoTime()
-    println("Elapsed time: " + (t1 - t0)/1000000000.0 + " seconds")
+    println("Elapsed time: " + "%.2f".format((t1 - t0)/1000000000.0) + " seconds")
     result
 }
 
@@ -118,7 +118,7 @@ for (t <- sorted) {
   val fileContents = Source.fromFile(t).getLines.filter(!_.startsWith("--")).mkString(" ")
   println(fileContents)
   try {
-    time{spark.sql(fileContents).show}
+    time{spark.sql(fileContents).collect}
     // spark.sql(fileContents).explain
     Thread.sleep(2000)
   } catch {

@@ -13,14 +13,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GLUTEN_JAR=/PATH_TO_GLUTEN_HOME/package/target/<gluten-jar>
-SPARK_HOME=/PATH_TO_SPARK_HOME/
+GLUTEN_JAR=oss://alifr-bigdata-product-test/cgh/gluten-velox-bundle-spark3.3_2.12-alinux_2.1903_x86_64-1.3.0-SNAPSHOT.jar
+SPARK_HOME=/opt/apps/SPARK3/spark3-current/
 
 cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --master yarn --deploy-mode client \
   --conf spark.plugins=org.apache.gluten.GlutenPlugin \
-  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
-  --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
+#  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
+#  --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
+  --jars ${GLUTEN_JAR} \
   --conf spark.memory.offHeap.enabled=true \
   --conf spark.memory.offHeap.size=2g \
   --conf spark.gluten.sql.columnar.forceShuffledHashJoin=true \
@@ -30,7 +31,8 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --driver-memory 2g \
   --executor-memory 2g \
   --conf spark.executor.memoryOverhead=2g \
-  --conf spark.driver.maxResultSize=2g
+  --conf spark.driver.maxResultSize=2g \
+  --conf spark.gluten.sql.columnar.backend.velox.IOThreads=0
 
   # If there are some "*.so" libs dependencies issues on some specific Distros,
   # try to enable spark.gluten.loadLibFromJar and build your own gluten-thirdparty-lib Jar.
