@@ -24,8 +24,8 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --executor-memory 4g \
   --conf spark.executor.memoryOverhead=2g \
   --conf spark.driver.maxResultSize=2g \
-  --conf spark.executorEnv.JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
-  --conf spark.yarn.appMasterEnv.JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
+#  --conf spark.executorEnv.JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
+#  --conf spark.yarn.appMasterEnv.JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
 
   # If there are some "*.so" libs dependencies issues on some specific Distros,
   # try to enable spark.gluten.loadLibFromJar and build your own gluten-thirdparty-lib Jar.
