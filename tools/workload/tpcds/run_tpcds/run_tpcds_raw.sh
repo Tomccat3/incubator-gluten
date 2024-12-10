@@ -18,10 +18,10 @@ SPARK_HOME=/usr/lib/spark
 
 cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --master yarn --deploy-mode client \
-  --num-executors 4 \
-  --executor-cores 1 \
+  --num-executors 2 \
+  --executor-cores 2 \
   --driver-memory 2g \
-  --executor-memory 4g \
+  --executor-memory 8g \
   --conf spark.executor.memoryOverhead=2g \
   --conf spark.driver.maxResultSize=2g \
 #  --conf spark.executorEnv.JAVA_HOME="/usr/lib/jvm/java-1.8.0" \
