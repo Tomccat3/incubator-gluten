@@ -21,7 +21,7 @@ val scaleFactor = "1024" // scaleFactor defines the size of the dataset to gener
 val numPartitions = 200  // how many dsdgen partitions to run - number of input tasks.
 
 val format = "parquet" // valid spark format like parquet "parquet".
-val rootDir = "/tmp/tpcds" // root directory of location to create data in.
+val rootDir = "s3://transsion-athena-ind/emr-bootstrap/tmp/tpcds" // root directory of location to create data in.
 val dsdgenDir = "/tmp/tpcds-kit/tools" // location of dbgen
 
 val tables = new TPCDSTables(spark.sqlContext,
