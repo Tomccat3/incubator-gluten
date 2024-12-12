@@ -19,6 +19,7 @@ SPARK_HOME=/opt/apps/SPARK3/spark3-current/
 cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --master yarn --deploy-mode client \
   --conf spark.plugins=org.apache.gluten.GlutenPlugin \
+  --conf spark.gluten.loadLibFromJar=true \
   --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
   --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
   --conf spark.memory.offHeap.enabled=true \
