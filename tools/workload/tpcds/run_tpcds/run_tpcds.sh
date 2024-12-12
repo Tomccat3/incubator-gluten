@@ -13,13 +13,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-GLUTEN_JAR=oss://alifr-bigdata-product-test/cgh/gluten-velox-bundle-spark3.3_2.12-alinux_2.1903_x86_64-1.3.0-SNAPSHOT.jar
+GLUTEN_JAR=/opt/apps/SPARK3/spark3-current/gluten-velox-bundle-spark3.3_2.12-alinux_2.1903_x86_64-1.3.0-SNAPSHOT.jar
 SPARK_HOME=/opt/apps/SPARK3/spark3-current/
 
 cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --master yarn --deploy-mode client \
   --conf spark.plugins=org.apache.gluten.GlutenPlugin \
-  --jars ${GLUTEN_JAR} \
+  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
+  --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
   --conf spark.memory.offHeap.enabled=true \
   --conf spark.memory.offHeap.size=4g \
   --conf spark.gluten.sql.columnar.forceShuffledHashJoin=true \
