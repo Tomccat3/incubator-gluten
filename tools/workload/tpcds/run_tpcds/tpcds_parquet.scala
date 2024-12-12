@@ -94,8 +94,8 @@ def getListOfFiles(dir: String): List[File] = {
      val d = new File(dir)
      if (d.exists && d.isDirectory) {
          // You can run a specific query by using below line.
-         // d.listFiles.filter(_.isFile).filter(_.getName().contains("17.sql")).toList
-         d.listFiles.filter(_.isFile).toList
+          d.listFiles.filter(_.isFile).filter(_.getName().contains("1.sql")).toList
+//         d.listFiles.filter(_.isFile).toList
      } else {
          List[File]()
      }
