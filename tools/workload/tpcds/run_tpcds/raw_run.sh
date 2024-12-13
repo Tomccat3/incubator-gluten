@@ -21,7 +21,7 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --num-executors 1 \
   --executor-cores 1 \
   --driver-memory 2g \
-  --executor-memory 1g \
+  --executor-memory 6g \
   --conf spark.executor.memoryOverhead=1g \
   --conf spark.driver.maxResultSize=2g
 
