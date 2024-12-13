@@ -26,10 +26,10 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --conf spark.memory.offHeap.size=4g \
   --conf spark.gluten.sql.columnar.forceShuffledHashJoin=true \
   --conf spark.shuffle.manager=org.apache.spark.shuffle.sort.ColumnarShuffleManager \
-  --num-executors 1 \
+  --num-executors 4 \
   --executor-cores 1 \
   --driver-memory 2g \
-  --executor-memory 2g \
+  --executor-memory 1g \
   --conf spark.executor.memoryOverhead=1g \
   --conf spark.driver.maxResultSize=2g \
   --conf spark.gluten.sql.columnar.backend.velox.IOThreads=0

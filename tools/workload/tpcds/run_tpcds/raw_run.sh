@@ -18,7 +18,7 @@ SPARK_HOME=/opt/apps/SPARK3/spark3-current/
 
 cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --master yarn --deploy-mode client \
-  --num-executors 1 \
+  --num-executors 4 \
   --executor-cores 1 \
   --driver-memory 2g \
   --executor-memory 6g \
