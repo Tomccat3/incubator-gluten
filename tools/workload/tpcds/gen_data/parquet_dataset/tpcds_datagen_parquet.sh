@@ -16,9 +16,9 @@
 SPARK_HOME=/opt/apps/SPARK3/spark3-current/
 spark_sql_perf_jar=/root/spark-sql-perf_2.12-0.5.1-SNAPSHOT.jar
 cat tpcds_datagen_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
-  --num-executors 2 \
+  --num-executors 4 \
   --name tpcds_gen_parquet \
-  --executor-memory 4g \
+  --executor-memory 6g \
   --executor-cores 1 \
   --master yarn \
   --driver-memory 2g \
