@@ -20,8 +20,6 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --master yarn --deploy-mode client \
   --conf spark.plugins=org.apache.gluten.GlutenPlugin \
   --conf spark.gluten.loadLibFromJar=false \
-  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
-  --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
   --conf spark.memory.offHeap.enabled=true \
   --conf spark.memory.offHeap.size=4g \
   --conf spark.gluten.sql.columnar.forceShuffledHashJoin=true \
