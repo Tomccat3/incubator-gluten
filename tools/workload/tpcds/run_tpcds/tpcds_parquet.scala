@@ -21,12 +21,12 @@ import java.util.Arrays
 import sys.process._
 
 // Configurations:
-var parquet_file_path = "/tmp/tpcds"
+var parquet_file_path = "/cgh/tmp/tpcds1/"
 var gluten_root = "/root/incubator-gluten"
 
 // File root path: file://, hdfs:// , s3 , ...
 // e.g. hdfs://hostname:8020
-var paq_file_root = "hdfs://10.38.81.35:9000"
+var paq_file_root = "oss://alifr-bigdata-product-test"
 
 var tpcds_queries_path = "/tools/gluten-it/common/src/main/resources/tpcds-queries/"
 
