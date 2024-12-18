@@ -33,6 +33,7 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --conf spark.executor.memoryOverhead=1g \
   --conf spark.driver.maxResultSize=2g \
   --conf spark.hadoop.fs.s3a.path.style.access=true \
+  --conf spark.hadoop.fs.s3a.endpoint=oss-eu-central-1-internal.aliyuncs.com \
   --conf spark.gluten.sql.columnar.backend.velox.IOThreads=0
 
   #  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
