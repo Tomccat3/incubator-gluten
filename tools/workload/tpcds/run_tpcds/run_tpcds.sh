@@ -33,7 +33,6 @@ cat tpcds_parquet.scala | ${SPARK_HOME}/bin/spark-shell \
   --conf spark.hadoop.fs.s3a.path.style.access=true \
   --conf spark.hadoop.fs.s3a.endpoint=oss-eu-central-1-internal.aliyuncs.com \
   --conf spark.gluten.sql.columnar.backend.velox.IOThreads=0
-
   #  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
   #  --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
 
