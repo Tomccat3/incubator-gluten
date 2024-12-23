@@ -24,7 +24,6 @@
     <relativePath>../pom.xml</relativePath>
   </parent>
 
-
   <dependencies>
     <!-- Do not remove the following. They are for enforcer plugin -->
     <dependency>
