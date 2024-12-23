@@ -47,7 +47,7 @@ case class InputPartitionsUtil(
   private def genNonBuckedInputPartitionSeq(): Seq[InputPartition] = {
     val openCostInBytes = relation.sparkSession.sessionState.conf.filesOpenCostInBytes
     val maxSplitBytes =
-      FilePartition.maxSplitBytes(relation.sparkSession, selectedPartitions)
+      FilePartition.maxSplitBytes(relation.sparkSession, selectedPartitions, isExpand = false)
     logInfo(
       s"Planning scan with bin packing, max size: $maxSplitBytes bytes, " +
         s"open cost is considered as scanning $openCostInBytes bytes.")
