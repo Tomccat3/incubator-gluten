@@ -123,6 +123,10 @@ private[gluten] class GlutenDriverPlugin extends DriverPlugin with Logging {
     GlutenEventUtils.post(sc, event)
   }
 
+  private def setDefaultConf(conf: SparkConf): Unit = {
+    //
+  }
+
   private def setPredefinedConfigs(conf: SparkConf): Unit = {
     // Spark SQL extensions
     val extensions = if (conf.contains(SPARK_SESSION_EXTENSIONS.key)) {
