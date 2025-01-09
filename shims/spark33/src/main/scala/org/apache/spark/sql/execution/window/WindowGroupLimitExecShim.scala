@@ -30,7 +30,7 @@ case object Final extends WindowGroupLimitMode
 case class WindowGroupLimitExecShim(
     partitionSpec: Seq[Expression],
     orderSpec: Seq[SortOrder],
-    rankLikeFunction: Expression,
+    rankLikeFunction: Seq[Expression],
     limit: Int,
     mode: WindowGroupLimitMode,
     child: SparkPlan)

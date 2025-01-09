@@ -259,7 +259,7 @@ class Spark33Shims extends SparkShims {
     WindowGroupLimitExecShim(
       windowGroupLimitPlan.partitionExprs,
       windowGroupLimitPlan.sortOrder,
-      windowGroupLimitPlan.expressions.head,
+      windowGroupLimitPlan.expressions,
       windowGroupLimitPlan.k,
       Partial,
       windowGroupLimitPlan.child
