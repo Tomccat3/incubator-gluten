@@ -143,13 +143,13 @@ case class WindowGroupLimitExecTransformer(
   }
 
   override protected def doValidateInternal(): ValidationResult = {
-    if (
-      !rankLikeFunction.exists(
-        func => BackendsApiManager.getSettings.supportWindowGroupLimitExec(func))
-    ) {
-      return ValidationResult
-        .failed(s"Found unsupported rank like function: ${rankLikeFunction.mkString(",")}")
-    }
+//    if (
+//      !rankLikeFunction.exists(
+//        func => BackendsApiManager.getSettings.supportWindowGroupLimitExec(func))
+//    ) {
+//      return ValidationResult
+//        .failed(s"Found unsupported rank like function: ${rankLikeFunction.mkString(",")}")
+//    }
 //    if (!BackendsApiManager.getSettings.supportWindowGroupLimitExec(rankLikeFunction)) {
 //      return ValidationResult
 //        .failed(s"Found unsupported rank like function: $rankLikeFunction")
