@@ -123,11 +123,44 @@ private[gluten] class GlutenDriverPlugin extends DriverPlugin with Logging {
     GlutenEventUtils.post(sc, event)
   }
 
+  // transsion
   private def setDefaultConf(conf: SparkConf): Unit = {
-    //
+    // enrich gluten jar path
+    val glutenJarPath = System.getenv("glutenJarPath")
+    val driverExtraPath = if (conf.contains("spark.driver.extraClassPath")) {
+      s"${conf.get("spark.driver.extraClassPath")}:" +
+        s"$glutenJarPath"
+    } else glutenJarPath
+    conf.set("spark.driver.extraClassPath", driverExtraPath)
+    val executorExtraPath = if (conf.contains("spark.executor.extraClassPath")) {
+      s"${conf.get("spark.executor.extraClassPath")}:" +
+        s"$glutenJarPath"
+    } else glutenJarPath
+    conf.set("spark.executor.extraClassPath", executorExtraPath)
+    // oss ak sk & oss endpoint
+    val ak = System.getenv("ossKey")
+    val sk = System.getenv("ossSec")
+    val endpoint = System.getenv("ossEndpoint")
+    if (!conf.contains("spark.hadoop.fs.s3a.endpoint")) {
+      conf.set("spark.hadoop.fs.s3a.endpoint", endpoint)
+    }
+    if (!conf.contains("spark.hadoop.fs.s3a.path.style.access")) {
+      conf.set("spark.hadoop.fs.s3a.path.style.access", "true")
+    }
+    if (!conf.contains("spark.hadoop.fs.s3a.access.key")) {
+      conf.set("spark.hadoop.fs.s3a.access.key", ak)
+    }
+    if (!conf.contains("spark.hadoop.fs.s3a.secret.key")) {
+      conf.set("spark.hadoop.fs.s3a.secret.key", sk)
+    }
+    if (!conf.contains("spark.shuffle.manager")) {
+      conf.set("spark.shuffle.manager", "org.apache.spark.shuffle.sort.ColumnarShuffleManager")
+    }
+    conf.set("spark.gluten.sql.columnar.backend.velox.IOThreads", "0")
   }
 
   private def setPredefinedConfigs(conf: SparkConf): Unit = {
+    setDefaultConf(conf)
     // Spark SQL extensions
     val extensions = if (conf.contains(SPARK_SESSION_EXTENSIONS.key)) {
       s"${conf.get(SPARK_SESSION_EXTENSIONS.key)}," +
