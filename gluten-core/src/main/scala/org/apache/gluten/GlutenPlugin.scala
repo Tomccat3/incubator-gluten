@@ -125,38 +125,38 @@ private[gluten] class GlutenDriverPlugin extends DriverPlugin with Logging {
 
   // transsion
   private def setDefaultConf(conf: SparkConf): Unit = {
-    // enrich gluten jar path
-    val glutenJarPath = System.getenv("glutenJarPath")
-    val driverExtraPath = if (conf.contains("spark.driver.extraClassPath")) {
-      s"${conf.get("spark.driver.extraClassPath")}:" +
-        s"$glutenJarPath"
-    } else glutenJarPath
-    conf.set("spark.driver.extraClassPath", driverExtraPath)
-    val executorExtraPath = if (conf.contains("spark.executor.extraClassPath")) {
-      s"${conf.get("spark.executor.extraClassPath")}:" +
-        s"$glutenJarPath"
-    } else glutenJarPath
-    conf.set("spark.executor.extraClassPath", executorExtraPath)
     // oss ak sk & oss endpoint
     val ak = System.getenv("ossKey")
     val sk = System.getenv("ossSec")
     val endpoint = System.getenv("ossEndpoint")
-    if (!conf.contains("spark.hadoop.fs.s3a.endpoint")) {
+    if (endpoint != null && !conf.contains("spark.hadoop.fs.s3a.endpoint")) {
       conf.set("spark.hadoop.fs.s3a.endpoint", endpoint)
     }
     if (!conf.contains("spark.hadoop.fs.s3a.path.style.access")) {
       conf.set("spark.hadoop.fs.s3a.path.style.access", "true")
     }
-    if (!conf.contains("spark.hadoop.fs.s3a.access.key")) {
+    if (ak != null && !conf.contains("spark.hadoop.fs.s3a.access.key")) {
       conf.set("spark.hadoop.fs.s3a.access.key", ak)
     }
-    if (!conf.contains("spark.hadoop.fs.s3a.secret.key")) {
+    if (sk != null && !conf.contains("spark.hadoop.fs.s3a.secret.key")) {
       conf.set("spark.hadoop.fs.s3a.secret.key", sk)
     }
     if (!conf.contains("spark.shuffle.manager")) {
       conf.set("spark.shuffle.manager", "org.apache.spark.shuffle.sort.ColumnarShuffleManager")
     }
-    conf.set("spark.gluten.sql.columnar.backend.velox.IOThreads", "0")
+    if (!conf.contains("spark.gluten.sql.columnar.backend.velox.IOThreads")) {
+      conf.set("spark.gluten.sql.columnar.backend.velox.IOThreads", "0")
+    }
+    // enabled dynamic memory when off-heap size not set
+    val minOffHeapSize = "1MB"
+    if (
+      conf.getSizeAsBytes(GlutenConfig.SPARK_OFFHEAP_SIZE_KEY, 0) > JavaUtils.byteStringAsBytes(
+        minOffHeapSize)
+    ) {
+      conf.set(GlutenConfig.SPARK_OFFHEAP_ENABLED, "true")
+    } else {
+      conf.set(GlutenConfig.GLUTEN_DYNAMIC_OFFHEAP_SIZING_ENABLED, "true")
+    }
   }
 
   private def setPredefinedConfigs(conf: SparkConf): Unit = {
