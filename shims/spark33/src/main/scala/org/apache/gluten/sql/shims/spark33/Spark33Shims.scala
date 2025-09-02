@@ -38,7 +38,7 @@ import org.apache.spark.sql.catalyst.util.{CaseInsensitiveMap, TimestampFormatte
 import org.apache.spark.sql.catalyst.util.RebaseDateTime.RebaseSpec
 import org.apache.spark.sql.connector.catalog.Table
 import org.apache.spark.sql.connector.expressions.Transform
-import org.apache.spark.sql.execution.{FileSourceScanExec, PartitionedFileUtil, SparkPlan, WindowTopKFilterExec}
+import org.apache.spark.sql.execution.{FileSourceScanExec, PartitionedFileUtil, SparkPlan}
 import org.apache.spark.sql.execution.datasources._
 import org.apache.spark.sql.execution.datasources.FileFormatWriter.Empty2Null
 import org.apache.spark.sql.execution.datasources.parquet.ParquetFilters
@@ -46,7 +46,6 @@ import org.apache.spark.sql.execution.datasources.v2.BatchScanExec
 import org.apache.spark.sql.execution.datasources.v2.text.TextScan
 import org.apache.spark.sql.execution.datasources.v2.utils.CatalogUtil
 import org.apache.spark.sql.execution.exchange.BroadcastExchangeLike
-import org.apache.spark.sql.execution.window.{Partial, WindowGroupLimitExecShim}
 import org.apache.spark.sql.internal.SQLConf
 import org.apache.spark.sql.internal.SQLConf.LegacyBehaviorPolicy
 import org.apache.spark.sql.types.{StructField, StructType}
@@ -247,23 +246,6 @@ class Spark33Shims extends SparkShims {
 
   override def getExtendedColumnarPostRules(): List[SparkSession => Rule[SparkPlan]] = {
     List(session => GlutenFormatFactory.getExtendedColumnarPostRule(session))
-  }
-
-  override def isWindowGroupLimitExec(plan: SparkPlan): Boolean = plan match {
-    case _: WindowTopKFilterExec => true
-    case _ => false
-  }
-
-  override def getWindowGroupLimitExecShim(plan: SparkPlan): WindowGroupLimitExecShim = {
-    val windowGroupLimitPlan = plan.asInstanceOf[WindowTopKFilterExec]
-    WindowGroupLimitExecShim(
-      windowGroupLimitPlan.partitionExprs,
-      windowGroupLimitPlan.sortOrder,
-      windowGroupLimitPlan.expressions,
-      windowGroupLimitPlan.k,
-      Partial,
-      windowGroupLimitPlan.child
-    )
   }
 
   override def createTestTaskContext(properties: Properties): TaskContext = {

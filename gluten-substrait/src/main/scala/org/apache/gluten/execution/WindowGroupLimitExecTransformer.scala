@@ -37,7 +37,7 @@ import scala.collection.JavaConverters._
 case class WindowGroupLimitExecTransformer(
     partitionSpec: Seq[Expression],
     orderSpec: Seq[SortOrder],
-    rankLikeFunction: Seq[Expression],
+    rankLikeFunction: Expression,
     limit: Int,
     mode: WindowGroupLimitMode,
     child: SparkPlan)
@@ -143,17 +143,10 @@ case class WindowGroupLimitExecTransformer(
   }
 
   override protected def doValidateInternal(): ValidationResult = {
-//    if (
-//      !rankLikeFunction.exists(
-//        func => BackendsApiManager.getSettings.supportWindowGroupLimitExec(func))
-//    ) {
-//      return ValidationResult
-//        .failed(s"Found unsupported rank like function: ${rankLikeFunction.mkString(",")}")
-//    }
-//    if (!BackendsApiManager.getSettings.supportWindowGroupLimitExec(rankLikeFunction)) {
-//      return ValidationResult
-//        .failed(s"Found unsupported rank like function: $rankLikeFunction")
-//    }
+    if (!BackendsApiManager.getSettings.supportWindowGroupLimitExec(rankLikeFunction)) {
+      return ValidationResult
+        .failed(s"Found unsupported rank like function: $rankLikeFunction")
+    }
     val substraitContext = new SubstraitContext
     val operatorId = substraitContext.nextOperatorId(this.nodeName)
 
