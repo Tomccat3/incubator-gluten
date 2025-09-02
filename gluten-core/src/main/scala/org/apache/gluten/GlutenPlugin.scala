@@ -126,21 +126,19 @@ private[gluten] class GlutenDriverPlugin extends DriverPlugin with Logging {
   // transsion
   private def setDefaultConf(conf: SparkConf): Unit = {
     // oss ak sk & oss endpoint
-    val ak = System.getenv("ossKey")
-    val sk = System.getenv("ossSec")
-    val endpoint = System.getenv("ossEndpoint")
+    val endpoint = "oss-eu-central-1-internal.aliyuncs.com"
     if (endpoint != null && !conf.contains("spark.hadoop.fs.s3a.endpoint")) {
       conf.set("spark.hadoop.fs.s3a.endpoint", endpoint)
     }
     if (!conf.contains("spark.hadoop.fs.s3a.path.style.access")) {
       conf.set("spark.hadoop.fs.s3a.path.style.access", "true")
     }
-    if (ak != null && !conf.contains("spark.hadoop.fs.s3a.access.key")) {
-      conf.set("spark.hadoop.fs.s3a.access.key", ak)
-    }
-    if (sk != null && !conf.contains("spark.hadoop.fs.s3a.secret.key")) {
-      conf.set("spark.hadoop.fs.s3a.secret.key", sk)
-    }
+//    if (ak != null && !conf.contains("spark.hadoop.fs.s3a.access.key")) {
+//      conf.set("spark.hadoop.fs.s3a.access.key", ak)
+//    }
+//    if (sk != null && !conf.contains("spark.hadoop.fs.s3a.secret.key")) {
+//      conf.set("spark.hadoop.fs.s3a.secret.key", sk)
+//    }
     if (!conf.contains("spark.shuffle.manager")) {
       conf.set("spark.shuffle.manager", "org.apache.spark.shuffle.sort.ColumnarShuffleManager")
     }
